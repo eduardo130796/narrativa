@@ -125,7 +125,7 @@ def processar_parte_do_texto(parts, narrator_number, role, voice_id, api_key):
 
         texto_narracao = aplicar_substituicoes(parts[1], substituicoes)
         save_audio(texto_narracao, audio_filename, voice_id, api_key)
-        st.audio(audio_filename, format="audio/mp3")
+        #st.audio(audio_filename, format="audio/mp3")
 
         # Mostra o texto criado
         st.success(f"Texto criado para {role} {narrator_number}:\n\n{texto_narracao}")
