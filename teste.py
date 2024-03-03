@@ -104,6 +104,15 @@ def processar_narrador(texto, narrator_number, voice_id_professor, api_key_profe
     else:
         st.warning(f"Não foi possível identificar o narrador para o texto: {texto}. Pulando para o próximo parágrafo.")
         return
+    # Verifica se o arquivo de áudio já existe na pasta
+    title = parts[0].strip()
+    title = title.replace('?', '').replace(':', '').replace('*', '')
+    audio_filename = generate_audio_filename(title, narrator_number, role)
+    audio_filename = os.path.join(diretorio_audio, audio_filename)
+
+    if os.path.exists(audio_filename):
+        st.write(f"O arquivo {audio_filename} já existe na pasta. Pulando etapa.")
+        return
 
     # Restante da função permanece inalterado
     processar_parte_do_texto(parts, narrator_number, role, voice_id, api_key)
